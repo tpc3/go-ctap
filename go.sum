@@ -1,0 +1,16 @@
+github.com/ebfe/scard v0.0.0-20230420082256-7db3f9b7c8a7 h1:HYAhfGa9dEemCZgGZWL5AvVsctBCsHxl2CI0HUXzHQE=
+github.com/ebfe/scard v0.0.0-20230420082256-7db3f9b7c8a7/go.mod h1:BkYEeWL6FbT4Ek+TcOBnPzEKnL7kOq2g19tTQXkorHY=
+github.com/fxamacker/cbor/v2 v2.5.0 h1:oHsG0V/Q6E/wqTS2O1Cozzsy69nqCiguo5Q1a1ADivE=
+github.com/fxamacker/cbor/v2 v2.5.0/go.mod h1:TA1xS00nchWmaBnEIxPSE5oHLuJBAVvqrtAnWBwBCVo=
+github.com/tpc3/go-fido v0.0.0-20231123022403-62c4c4171609 h1:ke1z68Z4TU+VESxV34O/XIXv1f5TlExo1OARsQoZBsY=
+github.com/tpc3/go-fido v0.0.0-20231123022403-62c4c4171609/go.mod h1:Gi7p0u+dYZwO5D8AAZE8ITHURyrQBjRK9BPn8aiyX1E=
+github.com/veraison/go-cose v1.1.1-0.20231006155830-2c01a2e4bc52 h1:0/lpmSUCUS2yAgOPCpqHhFGGpqO/ioWAJQZjN2ZkpwA=
+github.com/veraison/go-cose v1.1.1-0.20231006155830-2c01a2e4bc52/go.mod h1:D1wnviyjdmcF8AO5Y9kVGU6OGuvXUMGiE0Auo/fYRYo=
+github.com/x448/float16 v0.8.4 h1:qLwI1I70+NjRFUR3zs1JPUCgaCXSh3SW62uAKT1mSBM=
+github.com/x448/float16 v0.8.4/go.mod h1:14CWIYCyZA/cWjXOioeEpHeN/83MdbZDRQHoFcYsOfg=
+golang.org/x/crypto v0.15.0 h1:frVn1TEaCEaZcn3Tmd7Y2b5KKPaZ+I32Q2OA3kYp5TA=
+golang.org/x/crypto v0.15.0/go.mod h1:4ChreQoLWfG3xLDer1WdlH5NdlQ3+mwnQq1YTKY+72g=
+golang.org/x/sys v0.14.0 h1:Vz7Qs629MkJkGyHxUlRHizWJRG2j8fbQKjELVSNhy7Q=
+golang.org/x/sys v0.14.0/go.mod h1:/VUhepiaJMQUp4+oa/7Zr1D23ma6VTLIYjOOTFZPUcA=
+golang.org/x/term v0.14.0 h1:LGK9IlZ8T9jvdy6cTdfKUCltatMFOehAQo9SRC46UQ8=
+golang.org/x/term v0.14.0/go.mod h1:TySc+nGkYR6qt8km8wUhuFRTVSMIX3XPR58y2lC8vww=
