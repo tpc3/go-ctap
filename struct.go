@@ -239,3 +239,47 @@ func (k *PinUvAuthProtocolKey) UnmarshalCBOR(data []byte) error {
 	k.Key.UnmarshalCBOR(data)
 	return nil
 }
+
+const AuthenticatorCredentialManagementCommandId uint8 = 0x0A
+
+// https://fidoalliance.org/specs/fido-v2.1-ps-20210615/fido-client-to-authenticator-protocol-v2.1-ps-errata-20220621.html#authenticatorMakeCredential
+type AuthenticatorCredentialManagementRequest struct {
+	SubCommand        AuthenticatorCredentialManagementRequestSubCommand        `cbor:"1,keyasint"`
+	SubCommandParams  *AuthenticatorCredentialManagementRequestSubCommandParams `cbor:"2,keyasint,omitempty"`
+	PinUvAuthProtocol uint                                                      `cbor:"3,keyasint,omitempty"`
+	PinUvAuthParam    []byte                                                    `cbor:"4,keyasint,omitempty"`
+}
+
+type AuthenticatorCredentialManagementRequestSubCommand uint
+
+const (
+	AuthenticatorCredentialManagementRequestSubCommandGetCredsMetadata                     AuthenticatorCredentialManagementRequestSubCommand = 0x01
+	AuthenticatorCredentialManagementRequestSubCommandEnumlateRPsBegin                     AuthenticatorCredentialManagementRequestSubCommand = 0x02
+	AuthenticatorCredentialManagementRequestSubCommandEnumlateRPsGetNextRP                 AuthenticatorCredentialManagementRequestSubCommand = 0x03
+	AuthenticatorCredentialManagementRequestSubCommandEnumlateCredentialsBegin             AuthenticatorCredentialManagementRequestSubCommand = 0x04
+	AuthenticatorCredentialManagementRequestSubCommandEnumlateCredentialsGetNextCredential AuthenticatorCredentialManagementRequestSubCommand = 0x05
+	AuthenticatorCredentialManagementRequestSubCommandDeleteCredential                     AuthenticatorCredentialManagementRequestSubCommand = 0x06
+	AuthenticatorCredentialManagementRequestSubCommandUpdateUserInformation                AuthenticatorCredentialManagementRequestSubCommand = 0x07
+)
+
+type AuthenticatorCredentialManagementRequestSubCommandParams struct {
+	RPIDHash     []byte                              `cbor:"1,keyasint,omitempty"`
+	CredentialID *fido.PublicKeyCredentialDescriptor `cbor:"2,keyasint,omitempty"`
+	User         *fido.PublicKeyCredentialUserEntity `cbor:"3,keyasint,omitempty"`
+}
+
+// https://fidoalliance.org/specs/fido-v2.1-ps-20210615/fido-client-to-authenticator-protocol-v2.1-ps-errata-20220621.html#authenticatorMakeCredential
+type AuthenticatorCredentialManagementResponse struct {
+	ExistingResidentCredentialsCount             uint                               `cbor:"1,keyasint,omitempty"`
+	MaxPossibleRemainingResidentCredentialsCount uint                               `cbor:"2,keyasint,omitempty"`
+	RP                                           fido.PublicKeyCredentialRpEntity   `cbor:"3,keyasint,omitempty"`
+	RPIDHash                                     []byte                             `cbor:"4,keyasint,omitempty"`
+	TotalRPs                                     uint                               `cbor:"5,keyasint,omitempty"`
+	User                                         fido.PublicKeyCredentialUserEntity `cbor:"6,keyasint,omitempty"`
+	CredentialID                                 fido.PublicKeyCredentialDescriptor `cbor:"7,keyasint,omitempty"`
+	PublicKey                                    *cose.Key                          `cbor:"8,keyasint,omitempty"`
+	TotalCredentials                             uint                               `cbor:"9,keyasint,omitempty"`
+	CredProtect                                  uint                               `cbor:"10,keyasint,omitempty"`
+	LargeBlobKey                                 []byte                             `cbor:"11,keyasint,omitempty"`
+	ThirdPartyPayment                            bool                               `cbor:"12,keyasint,omitempty"`
+}

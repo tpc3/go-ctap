@@ -301,3 +301,32 @@ func (d *Device) GetPinUvAuthToken(permission PinUvAuthTokenPermission, rpID str
 		return d.PinUVAuthProtocol.Decrypt(secret, resp.PinUvAuthToken)
 	}
 }
+
+// https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#authenticatorCredentialManagement
+func (d *Device) CredentialManagement(req AuthenticatorCredentialManagementRequest) (resp *AuthenticatorCredentialManagementResponse, err error) {
+	reqData, err := cbor.Marshal(req)
+	if err != nil {
+		return
+	}
+	rawResp, err := d.SendCommand(AuthenticatorCredentialManagementCommandId, reqData)
+	if err != nil {
+		return nil, err
+	}
+	err = cbor.Unmarshal(rawResp, &resp)
+	return
+}
+
+// Superseded
+// https://fidoalliance.org/specs/fido-v2.2-rd-20230321/fido-client-to-authenticator-protocol-v2.2-rd-20230321.html#prototypeAuthenticatorCredentialManagement
+func (d *Device) PrototypeCredentialManagement(req AuthenticatorCredentialManagementRequest) (resp *AuthenticatorCredentialManagementResponse, err error) {
+	reqData, err := cbor.Marshal(req)
+	if err != nil {
+		return
+	}
+	rawResp, err := d.SendCommand(0x41, reqData)
+	if err != nil {
+		return nil, err
+	}
+	err = cbor.Unmarshal(rawResp, &resp)
+	return
+}
